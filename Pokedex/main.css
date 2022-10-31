@@ -7,6 +7,26 @@
   font-family: 'Roboto', sans-serif;
 }
 
-button {
-  padding: 1em;
+section {
+  padding: 1rem;
+}
+
+ul.pokemons {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+ul.pokemons li {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 1rem;
+  background-color: #14a06f;
+  color: white;
+  border-radius: 0.4rem;
+}
+
+ul.pokemons li img.profile {
+  max-width: 100%;
 }
