@@ -1,4 +1,4 @@
-
+const offset = `0`
 
 const url = `https://pokeapi.co/api/v2/pokemon/`
 
