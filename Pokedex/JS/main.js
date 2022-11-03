@@ -3,8 +3,9 @@ function typesList (types) {
 }
 
 function savePokemons (pokemon) {
+  console.log(pokemon)
   return `
-    <li class="eachPokemon" class="normal">
+    <li class="eachPokemon ${pokemon.types[0].type.name}">
       <div class="name_number">
         <strong>${pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}</strong>
         <span>#${("000" + pokemon.order).slice(-3)}</span>
