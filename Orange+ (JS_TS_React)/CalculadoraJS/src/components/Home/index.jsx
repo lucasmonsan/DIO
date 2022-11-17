@@ -9,8 +9,8 @@ export const Home = () => {
   const [operation, setOperation] = useState("");
   const [history, setHistory] = useState(["-1","-2","-3","-4","-5","-6"])
 
-  function handleClick (character) {
-
+  function handleClick () {
+    alert("character")
   }
 
   return (
@@ -27,7 +27,7 @@ export const Home = () => {
 
       <Div>
         <ButtonOperation>C</ButtonOperation>
-        <ButtonOperation><FaPercentage/></ButtonOperation>
+        <ButtonOperation onClick={handleClick}><FaPercentage/></ButtonOperation>
         <ButtonOperation><FaAngleLeft/></ButtonOperation>
         <ButtonOperation><FaDivide/></ButtonOperation>
         <ButtonNumber>7</ButtonNumber>
