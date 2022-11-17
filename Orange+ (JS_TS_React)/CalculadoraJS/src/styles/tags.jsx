@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-interface Props {
-  display?: string;
-  bgcolor?: string;
-  gap?: string;
-}
-
 export const Section = styled.section`
   width: 100%;
   height: 100vh;
@@ -14,7 +8,7 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
 `
-export const Div = styled.div<Props>`
+export const Div = styled.div`
   width: 100%;
   height: 100%;
   padding: 0.5em;
@@ -27,7 +21,7 @@ export const Div = styled.div<Props>`
 
   background-color: ${props => props.bgcolor || "#363E3C"};
 `
-export const Button = styled.button<Props>`
+export const ButtonNumber = styled.button`
   color: #DFDEDE;
   background-color: ${props => props.bgcolor || "#5D5F63"};
 
@@ -45,29 +39,49 @@ export const Button = styled.button<Props>`
     transform: scale(0.95)
   }
 `
-export const Textarea = styled.textarea`
-  resize: none;
-  outline: none;
+export const ButtonOperation = styled.button`
   color: #DFDEDE;
+  background-color: #E76F51;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1.25rem;
+  font-weight: bold;
+  transition: all 0.1s;
+
+  :active{
+    transform: scale(0.95)
+  }
+`
+export const Span = styled.span`
+  color: ${props => props.color};
   background-color: #060709;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
   height: 100%;
   padding: 0.5em;
 
   text-align: center;
-  font-size: 1.25rem;
+  font-size: ${props => props.textSize};
   border: none;
-  border-radius: 0.5em 0.5em 0 0;
+  border-radius: ${props => props.radius || 0};
 `
 export const Strong = styled.strong`
   color: #DFDEDE;
   background-color: #060709;
 
-  padding: 0.25em;
+  padding: 0.15em;
 
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.25rem;
   border: none;
   border-radius: 0 0 0.5em 0.5em;
 `
