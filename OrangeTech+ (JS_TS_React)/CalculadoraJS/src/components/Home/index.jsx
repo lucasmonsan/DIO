@@ -7,10 +7,38 @@ import { FaUndo , FaTimes } from 'react-icons/fa';
 export const Home = () => {
   const [result, setResult] = useState(0);
   const [operation, setOperation] = useState("");
-  const [history, setHistory] = useState(["-1","-2","-3","-4","-5","-6"])
+  const [history, setHistory] = useState([{
 
-  function handleClick (character) {
+  }]);
 
+  function handleClear (action) {
+    if (action === "simple") {
+      setResult("0");
+    } else {
+      setResult("0");
+      setHistory([]);
+    }
+  }
+  function handlePercent () {
+    setResult(result / 100);
+  }
+  function handleClickNumbers (character) {
+    if ((result === "0") || (result === 0)) {
+      setResult(character);
+    } else {
+      setResult(result + character);
+    }
+  }
+  function handleOperations (operation) {
+    for (let n=0; n<=history.length; n++) {
+      if (history[0] === undefined) {
+        setHistory(history => [...history, result + " + "]);
+        return
+      } else if ((history[0] !== undefined) && (history[0].slice(-1) === " ") ) {
+        setHistory[0]()
+        return
+      }
+    }
   }
 
   return (
@@ -26,24 +54,24 @@ export const Home = () => {
       </Div>
 
       <Div>
-        <ButtonOperation>C</ButtonOperation>
-        <ButtonOperation><FaPercentage/></ButtonOperation>
+        <ButtonOperation onClick={e => handleClear("simple")}>C</ButtonOperation>
+        <ButtonOperation onClick={e => handlePercent()}><FaPercentage/></ButtonOperation>
         <ButtonOperation><FaAngleLeft/></ButtonOperation>
         <ButtonOperation><FaDivide/></ButtonOperation>
-        <ButtonNumber>7</ButtonNumber>
-        <ButtonNumber>8</ButtonNumber>
-        <ButtonNumber>9</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("7")}>7</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("8")}>8</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("9")}>9</ButtonNumber>
         <ButtonOperation><FaTimes/></ButtonOperation>
-        <ButtonNumber>4</ButtonNumber>
-        <ButtonNumber>5</ButtonNumber>
-        <ButtonNumber>6</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("4")}>4</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("5")}>5</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("6")}>6</ButtonNumber>
         <ButtonOperation><FaMinus/></ButtonOperation>
-        <ButtonNumber>1</ButtonNumber>
-        <ButtonNumber>2</ButtonNumber>
-        <ButtonNumber>3</ButtonNumber>
-        <ButtonOperation><FaPlus/></ButtonOperation>
-        <ButtonOperation><FaUndo/></ButtonOperation>
-        <ButtonNumber>0</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("1")}>1</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("2")}>2</ButtonNumber>
+        <ButtonNumber onClick={e => handleClickNumbers("3")}>3</ButtonNumber>
+        <ButtonOperation onClick={e => handleOperations("add")}><FaPlus/></ButtonOperation>
+        <ButtonOperation onClick={e => handleClear("complete")}><FaUndo/></ButtonOperation>
+        <ButtonNumber onClick={e => handleClickNumbers("0")}>0</ButtonNumber>
         <ButtonNumber>.</ButtonNumber>
         <ButtonOperation><FaGripLines/></ButtonOperation>
       </Div>

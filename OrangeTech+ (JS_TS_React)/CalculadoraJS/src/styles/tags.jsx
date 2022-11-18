@@ -7,10 +7,14 @@ export const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-color: #363E3C;
 `
 export const Div = styled.div`
   width: 100%;
   height: 100%;
+  max-width: 540px;
+  max-height: 480px;
   padding: 0.5em;
 
   display: ${props => props.display || "grid"};
@@ -18,8 +22,6 @@ export const Div = styled.div`
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: ${props => props.gap || "0.5em"};
   flex-direction: column;
-
-  background-color: ${props => props.bgcolor || "#363E3C"};
 `
 export const ButtonNumber = styled.button`
   color: #DFDEDE;
