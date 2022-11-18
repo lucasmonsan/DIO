@@ -54,8 +54,13 @@ export const Home = () => {
       </Div>
 
       <Div>
+<<<<<<< HEAD
         <ButtonOperation onClick={e => handleClear("simple")}>C</ButtonOperation>
         <ButtonOperation onClick={e => handlePercent()}><FaPercentage/></ButtonOperation>
+=======
+        <ButtonOperation>C</ButtonOperation>
+        <ButtonOperation onClick={handleClick}><FaPercentage/></ButtonOperation>
+>>>>>>> 8ba7560e4abdc623df4c1bac98daacde29f59ce8
         <ButtonOperation><FaAngleLeft/></ButtonOperation>
         <ButtonOperation><FaDivide/></ButtonOperation>
         <ButtonNumber onClick={e => handleClickNumbers("7")}>7</ButtonNumber>
