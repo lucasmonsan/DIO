@@ -24,6 +24,8 @@ export const Div = styled.div`
   flex-direction: column;
 `
 export const ButtonNumber = styled.button`
+  cursor: pointer;
+
   color: #DFDEDE;
   background-color: ${props => props.bgcolor || "#5D5F63"};
 
@@ -42,6 +44,8 @@ export const ButtonNumber = styled.button`
   }
 `
 export const ButtonOperation = styled.button`
+  cursor: pointer;
+  
   color: #DFDEDE;
   background-color: #E76F51;
 
@@ -77,6 +81,8 @@ export const Span = styled.span`
   border-radius: ${props => props.radius || 0};
 `
 export const Strong = styled.strong`
+  cursor: pointer;
+
   color: #DFDEDE;
   background-color: #060709;
 
