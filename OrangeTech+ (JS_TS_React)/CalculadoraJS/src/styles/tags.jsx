@@ -45,7 +45,7 @@ export const ButtonNumber = styled.button`
 `
 export const ButtonOperation = styled.button`
   cursor: pointer;
-  
+
   color: #DFDEDE;
   background-color: #E76F51;
 
@@ -92,4 +92,9 @@ export const Strong = styled.strong`
   font-size: 2.25rem;
   border: none;
   border-radius: 0 0 0.5em 0.5em;
+
+  -moz-user-select:none; /* firefox */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE*/
+   user-select: none; /* Standard syntax */
 `

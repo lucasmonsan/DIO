@@ -86,18 +86,34 @@ export const Home = () => {
     setHistory3(history2);
     setHistory2(history1);
 
-    if (oldOperator === "sum") {
-      setHistory1(oldNumber + " + " + number + " = " + (parseFloat(oldNumber) + parseFloat(number)));
-      handleHistory0(op, (parseFloat(oldNumber) + parseFloat(number)))
-    } else if (oldOperator === "sub") {
-      setHistory1(oldNumber + " - " + number + " = " + (parseFloat(oldNumber) - parseFloat(number)));
-      handleHistory0(op, (parseFloat(oldNumber) - parseFloat(number)))
-    } else if (oldOperator === "mult") {
-      setHistory1(oldNumber + " x " + number + " = " + (parseFloat(oldNumber) * parseFloat(number)));
-      handleHistory0(op, (parseFloat(oldNumber) * parseFloat(number)))
-    } else if (oldOperator === "div") {
-      setHistory1(oldNumber + " / " + number + " = " + (parseFloat(oldNumber) / parseFloat(number)));
-      handleHistory0(op, (parseFloat(oldNumber) / parseFloat(number)))
+    if (number.includes("-")) {
+      if (oldOperator === "sum") {
+        setHistory1(oldNumber + " + (" + number + ") = " + (parseFloat(oldNumber) + parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) + parseFloat(number)))
+      } else if (oldOperator === "sub") {
+        setHistory1(oldNumber + " - (" + number + ") = " + (parseFloat(oldNumber) - parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) - parseFloat(number)))
+      } else if (oldOperator === "mult") {
+        setHistory1(oldNumber + " x (" + number + ") = " + (parseFloat(oldNumber) * parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) * parseFloat(number)))
+      } else if (oldOperator === "div") {
+        setHistory1(oldNumber + " / (" + number + ") = " + (parseFloat(oldNumber) / parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) / parseFloat(number)))
+      }
+    } else {
+      if (oldOperator === "sum") {
+        setHistory1(oldNumber + " + " + number + " = " + (parseFloat(oldNumber) + parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) + parseFloat(number)))
+      } else if (oldOperator === "sub") {
+        setHistory1(oldNumber + " - " + number + " = " + (parseFloat(oldNumber) - parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) - parseFloat(number)))
+      } else if (oldOperator === "mult") {
+        setHistory1(oldNumber + " x " + number + " = " + (parseFloat(oldNumber) * parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) * parseFloat(number)))
+      } else if (oldOperator === "div") {
+        setHistory1(oldNumber + " / " + number + " = " + (parseFloat(oldNumber) / parseFloat(number)));
+        handleHistory0(op, (parseFloat(oldNumber) / parseFloat(number)))
+      }
     }
   }
   function handleOperations (op) {    
