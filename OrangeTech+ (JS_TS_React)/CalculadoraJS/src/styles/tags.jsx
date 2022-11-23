@@ -28,7 +28,7 @@ export const Div = styled.div`
   flex-direction: column;
 
   @media (max-width: 920px) {
-    max-height: 50vh;
+    max-width: 100%;
   }
 `
 export const ButtonNumber = styled.button`
