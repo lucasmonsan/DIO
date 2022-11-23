@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Section, Div, ButtonNumber, ButtonOperation, Span, Strong } from "../../styles/tags"
+import { Section, Div, ButtonNumber, ButtonOperation, Span, Input } from "../../styles/tags"
 
 import { FaAngleLeft, FaDivide, FaGripLines, FaMinus, FaPercentage, FaPlus } from 'react-icons/fa';
 import { FaUndo , FaTimes } from 'react-icons/fa';
@@ -16,6 +16,25 @@ export const Home = () => {
   const [history4, setHistory4] = useState("");
   const [history5, setHistory5] = useState("");
 
+  function handleTyping (key) {
+    if (((!isNaN(key)) || key === ".") && (key !== " ")) {
+      handleClickNumbers(key);
+    } else if (key === ",") {
+      handleClickNumbers(".");
+    } else if (key === "Backspace") {
+      handleClear("simple");
+    } else if (key === "+") {
+      handleOperations("sum");
+    } else if (key === "-") {
+      handleOperations("sub");
+    } else if (key === "*") {
+      handleOperations("mult");
+    } else if (key === "/") {
+      handleOperations("div");
+    } else if ((key === "Enter") || (key === " ")) {
+      handleOperations("equal");
+    }
+  }
   function handleClear (action) {
     if (action === "simple") {
       if (number.length > 1) {
@@ -24,10 +43,21 @@ export const Home = () => {
         setNumber("0");
       }
     } else if (action === "normal") {
-      setHistory0("");
-      setOldNumber("");
-      setOldOperator("");
-      setNumber("0");
+      if (history0.includes("=")) {
+        setOldNumber("");
+        setOldOperator("");
+        setNumber("0");
+      } else {
+        setHistory0(history1);
+        setHistory1(history2);
+        setHistory2(history3);
+        setHistory3(history4);
+        setHistory4(history5);
+        setHistory5("");
+        setOldNumber("");
+        setOldOperator("");
+        setNumber("0");
+      }
     } else if (action === "complete") {
       setOldNumber("");
       setOldOperator("");
@@ -75,49 +105,81 @@ export const Home = () => {
       setOldNumber(result);
       setOldOperator(op);
     } else if (op === "equal") {
-      setHistory0("");
+      setHistory0(result);
       setOldNumber("");
       setOldOperator("");
     }
   }
-  function reorderHistory (op) {
-    setHistory5(history4);
-    setHistory4(history3);
-    setHistory3(history2);
-    setHistory2(history1);
-
-    if (number.includes("-")) {
-      if (oldOperator === "sum") {
-        setHistory1(oldNumber + " + (" + number + ") = " + (parseFloat(oldNumber) + parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) + parseFloat(number)))
-      } else if (oldOperator === "sub") {
-        setHistory1(oldNumber + " - (" + number + ") = " + (parseFloat(oldNumber) - parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) - parseFloat(number)))
-      } else if (oldOperator === "mult") {
-        setHistory1(oldNumber + " x (" + number + ") = " + (parseFloat(oldNumber) * parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) * parseFloat(number)))
-      } else if (oldOperator === "div") {
-        setHistory1(oldNumber + " / (" + number + ") = " + (parseFloat(oldNumber) / parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) / parseFloat(number)))
+  function reorderHistory (op) {    
+    if (op === "equal") {
+      if (number.includes("-")) {
+        if (oldOperator === "sum") {
+          handleHistory0(op, (oldNumber + " + (" + number + ") = " + (parseFloat(oldNumber) + parseFloat(number))));
+          setNumber((parseFloat(oldNumber) + parseFloat(number)));
+        } else if (oldOperator === "sub") {
+          handleHistory0(op, (oldNumber + " - (" + number + ") = " + (parseFloat(oldNumber) - parseFloat(number))));
+          setNumber((parseFloat(oldNumber) - parseFloat(number)));
+        } else if (oldOperator === "mult") {
+          handleHistory0(op, (oldNumber + " x (" + number + ") = " + (parseFloat(oldNumber) * parseFloat(number))));
+          setNumber((parseFloat(oldNumber) * parseFloat(number)));
+        } else if (oldOperator === "div") {
+          handleHistory0(op, (oldNumber + " / (" + number + ") = " + (parseFloat(oldNumber) / parseFloat(number))));
+          setNumber((parseFloat(oldNumber) / parseFloat(number)));
+        }
+      } else {
+        if (oldOperator === "sum") {
+          handleHistory0(op, (oldNumber + " + " + number + " = " + (parseFloat(oldNumber) + parseFloat(number))));
+          setNumber((parseFloat(oldNumber) + parseFloat(number)));
+        } else if (oldOperator === "sub") {
+          handleHistory0(op, (oldNumber + " - " + number + " = " + (parseFloat(oldNumber) - parseFloat(number))));
+          setNumber((parseFloat(oldNumber) - parseFloat(number)));
+        } else if (oldOperator === "mult") {
+          handleHistory0(op, (oldNumber + " x " + number + " = " + (parseFloat(oldNumber) * parseFloat(number))));
+          setNumber((parseFloat(oldNumber) * parseFloat(number)));
+        } else if (oldOperator === "div") {
+          handleHistory0(op, (oldNumber + " / " + number + " = " + (parseFloat(oldNumber) / parseFloat(number))));
+          setNumber((parseFloat(oldNumber) / parseFloat(number)));
+        }
       }
     } else {
-      if (oldOperator === "sum") {
-        setHistory1(oldNumber + " + " + number + " = " + (parseFloat(oldNumber) + parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) + parseFloat(number)))
-      } else if (oldOperator === "sub") {
-        setHistory1(oldNumber + " - " + number + " = " + (parseFloat(oldNumber) - parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) - parseFloat(number)))
-      } else if (oldOperator === "mult") {
-        setHistory1(oldNumber + " x " + number + " = " + (parseFloat(oldNumber) * parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) * parseFloat(number)))
-      } else if (oldOperator === "div") {
-        setHistory1(oldNumber + " / " + number + " = " + (parseFloat(oldNumber) / parseFloat(number)));
-        handleHistory0(op, (parseFloat(oldNumber) / parseFloat(number)))
+      if (number.includes("-")) {
+        if (oldOperator === "sum") {
+          setHistory1(oldNumber + " + (" + number + ") = " + (parseFloat(oldNumber) + parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) + parseFloat(number)));
+        } else if (oldOperator === "sub") {
+          setHistory1(oldNumber + " - (" + number + ") = " + (parseFloat(oldNumber) - parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) - parseFloat(number)));
+        } else if (oldOperator === "mult") {
+          setHistory1(oldNumber + " x (" + number + ") = " + (parseFloat(oldNumber) * parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) * parseFloat(number)));
+        } else if (oldOperator === "div") {
+          setHistory1(oldNumber + " / (" + number + ") = " + (parseFloat(oldNumber) / parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) / parseFloat(number)));
+        }
+      } else {
+        if (oldOperator === "sum") {
+          setHistory1(oldNumber + " + " + number + " = " + (parseFloat(oldNumber) + parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) + parseFloat(number)));
+        } else if (oldOperator === "sub") {
+          setHistory1(oldNumber + " - " + number + " = " + (parseFloat(oldNumber) - parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) - parseFloat(number)));
+        } else if (oldOperator === "mult") {
+          setHistory1(oldNumber + " x " + number + " = " + (parseFloat(oldNumber) * parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) * parseFloat(number)));
+        } else if (oldOperator === "div") {
+          setHistory1(oldNumber + " / " + number + " = " + (parseFloat(oldNumber) / parseFloat(number)));
+          handleHistory0(op, (parseFloat(oldNumber) / parseFloat(number)));
+        }
       }
     }
   }
-  function handleOperations (op) {    
+  function handleOperations (op) {   
     if (oldOperator === "") {
+      setHistory5(history4);
+      setHistory4(history3);
+      setHistory3(history2);
+      setHistory2(history1);
+      setHistory1(history0);
       setOldNumber(number);
       setOldOperator(op);
       if (op === "sum") {
@@ -143,21 +205,36 @@ export const Home = () => {
       }
       setOldOperator(op);
     } else {
-      reorderHistory(op);
+      if (op === "equal") {
+        reorderHistory(op);
+      } else {
+        setHistory5(history4);
+        setHistory4(history3);
+        setHistory3(history2);
+        setHistory2(history1);
+        reorderHistory(op);
+      }
     }
     setNumber("0");
+  }
+  function extractResult (history) {
+    const result = history.split(" ")
+
+    if (result[result.length-1] !== ""){
+      setNumber(result[result.length-1]);
+    }
   }
 
   return (
     <Section>
-      <Div display="flex" gap="0">
-        <Span textSize="0.5rem" color="#dfdede30" radius="1.5em 1.5em 0 0">{history5}</Span>
-        <Span textSize="0.65rem" color="#dfdede50">{history4}</Span>
-        <Span textSize="0.8rem" color="#dfdede70">{history3}</Span>
-        <Span textSize="0.95rem" color="#dfdede90">{history2}</Span>
-        <Span textSize="1.1rem" color="#dfdedeb0">{history1}</Span>
-        <Span textSize="1.25rem" color="#dfdeded0">{history0}</Span>
-        <Strong onClick={e => invertNumber()}>{number}</Strong>
+      <Div className="display" display="flex" gap="0">
+        <Span onClick={e => extractResult(history5)} textSize="0.5rem" color="#dfdede30" radius="1.5em 1.5em 0 0">{history5}</Span>
+        <Span onClick={e => extractResult(history4)} textSize="0.65rem" color="#dfdede50">{history4}</Span>
+        <Span onClick={e => extractResult(history3)} textSize="0.8rem" color="#dfdede70">{history3}</Span>
+        <Span onClick={e => extractResult(history2)} textSize="0.95rem" color="#dfdede90">{history2}</Span>
+        <Span onClick={e => extractResult(history1)} textSize="1.1rem" color="#dfdedeb0">{history1}</Span>
+        <Span onClick={e => extractResult(history0)} textSize="1.25rem" color="#dfdeded0">{history0}</Span>
+        <Input value={number} onClick={e => invertNumber()} onKeyDown={(e) => handleTyping(e.key)}>{number}</Input>
       </Div>
 
       <Div>

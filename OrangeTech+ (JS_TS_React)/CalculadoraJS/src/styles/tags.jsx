@@ -8,7 +8,11 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
 
-  background-color: #363E3C;
+  @media (max-width: 920px) {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 92vh;
+  }
 `
 export const Div = styled.div`
   width: 100%;
@@ -22,6 +26,10 @@ export const Div = styled.div`
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: ${props => props.gap || "0.5em"};
   flex-direction: column;
+
+  @media (max-width: 920px) {
+    max-height: 50vh;
+  }
 `
 export const ButtonNumber = styled.button`
   cursor: pointer;
@@ -64,6 +72,8 @@ export const ButtonOperation = styled.button`
   }
 `
 export const Span = styled.span`
+  cursor: pointer;
+
   color: ${props => props.color};
   background-color: #060709;
 
@@ -73,20 +83,21 @@ export const Span = styled.span`
 
   width: 100%;
   height: 100%;
-  padding: 0.5em;
+  padding: 0.15em;
 
   text-align: center;
   font-size: ${props => props.textSize};
   border: none;
   border-radius: ${props => props.radius || 0};
 `
-export const Strong = styled.strong`
+export const Input = styled.strong`
   cursor: pointer;
+  outline: none;
 
   color: #DFDEDE;
   background-color: #060709;
 
-  padding: 0.15em;
+  padding: 0.1em;
 
   text-align: center;
   font-size: 2.25rem;
