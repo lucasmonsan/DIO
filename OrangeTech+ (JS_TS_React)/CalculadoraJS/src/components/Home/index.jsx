@@ -81,7 +81,7 @@ export const Home = () => {
     }
   }
   function handleClickNumbers (character) {
-    if ((number === "0") && (character !== ".")) {
+    if (((number === "0") || (number === 0)) && (character !== ".") ) {
       setNumber(character);
     } else {
       setNumber(number + character);
@@ -227,13 +227,13 @@ export const Home = () => {
 
   return (
     <Section>
-      <Div className="display" display="flex" gap="0">
-        <Span onClick={e => extractResult(history5)} textSize="0.5rem" color="#dfdede30" radius="1.5em 1.5em 0 0">{history5}</Span>
-        <Span onClick={e => extractResult(history4)} textSize="0.65rem" color="#dfdede50">{history4}</Span>
-        <Span onClick={e => extractResult(history3)} textSize="0.8rem" color="#dfdede70">{history3}</Span>
-        <Span onClick={e => extractResult(history2)} textSize="0.95rem" color="#dfdede90">{history2}</Span>
-        <Span onClick={e => extractResult(history1)} textSize="1.1rem" color="#dfdedeb0">{history1}</Span>
-        <Span onClick={e => extractResult(history0)} textSize="1.25rem" color="#dfdeded0">{history0}</Span>
+      <Div display="flex" gap="0">
+        <Span onClick={e => extractResult(history5)} minH="8%" textLimit="3.5vw" textSize="0.5rem" color="#dfdede30" radius="1.5em 1.5em 0 0">{history5}</Span>
+        <Span onClick={e => extractResult(history4)} minH="10%" textLimit="4vw" textSize="0.65rem" color="#dfdede50">{history4}</Span>
+        <Span onClick={e => extractResult(history3)} minH="12%" textLimit="4.5vw" textSize="0.8rem" color="#dfdede70">{history3}</Span>
+        <Span onClick={e => extractResult(history2)} minH="14%" textLimit="5vw" textSize="0.95rem" color="#dfdede90">{history2}</Span>
+        <Span onClick={e => extractResult(history1)} minH="16%" textLimit="5.5vw" textSize="1.1rem" color="#dfdedeb0">{history1}</Span>
+        <Span onClick={e => extractResult(history0)} minH="18%" textLimit="6vw" textSize="1.25rem" color="#dfdeded0">{history0}</Span>
         <Input value={number} onClick={e => invertNumber()} onKeyDown={(e) => handleTyping(e.key)}>{number}</Input>
       </Div>
 

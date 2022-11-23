@@ -15,6 +15,8 @@ export const Section = styled.section`
   }
 `
 export const Div = styled.div`
+  position: relative;
+
   width: 100%;
   height: 100%;
   max-width: 540px;
@@ -24,15 +26,16 @@ export const Div = styled.div`
   display: ${props => props.display || "grid"};
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: ${props => props.gap || "0.5em"};
+  grid-gap: ${props => props.gap || "0.5em"};
   flex-direction: column;
 
   @media (max-width: 920px) {
-    max-width: 100%;
+    max-width: 100%
   }
 `
 export const ButtonNumber = styled.button`
   cursor: pointer;
+  overflow: hidden;
 
   color: #DFDEDE;
   background-color: ${props => props.bgcolor || "#5D5F63"};
@@ -47,12 +50,18 @@ export const ButtonNumber = styled.button`
   font-weight: bold;
   transition: all 0.1s;
 
+  -moz-user-select:none; /* firefox */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE*/
+   user-select: none; /* Standard syntax */
+
   :active{
     transform: scale(0.95)
   }
 `
 export const ButtonOperation = styled.button`
   cursor: pointer;
+  overflow: hidden;
 
   color: #DFDEDE;
   background-color: #E76F51;
@@ -66,6 +75,11 @@ export const ButtonOperation = styled.button`
   font-size: 1.25rem;
   font-weight: bold;
   transition: all 0.1s;
+
+  -moz-user-select:none; /* firefox */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE*/
+   user-select: none; /* Standard syntax */
 
   :active{
     transform: scale(0.95)
@@ -82,17 +96,24 @@ export const Span = styled.span`
   justify-content: center;
 
   width: 100%;
-  height: 100%;
-  padding: 0.15em;
+  min-height: ${props => props.minH};
+  padding: 0.4em;
 
   text-align: center;
-  font-size: ${props => props.textSize};
+  font-size: min(${props => props.textLimit}, ${props => props.textSize});
   border: none;
   border-radius: ${props => props.radius || 0};
 `
 export const Input = styled.strong`
   cursor: pointer;
   outline: none;
+  overflow-x: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;  
 
   color: #DFDEDE;
   background-color: #060709;
@@ -100,7 +121,7 @@ export const Input = styled.strong`
   padding: 0.1em;
 
   text-align: center;
-  font-size: 2.25rem;
+  font-size: min(15vw, 2.5rem);
   border: none;
   border-radius: 0 0 0.5em 0.5em;
 
