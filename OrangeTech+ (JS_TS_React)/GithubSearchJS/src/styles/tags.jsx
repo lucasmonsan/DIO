@@ -29,13 +29,14 @@ export const Footer = styled.footer`
   align-items: flex-start;
   justify-content: center;
 
-  width: 100%;
+  width: fit-content;
   height: 40%;
   padding: 0.5em;
+
+  border: solid red;
 `
 export const Img = styled.img`
-  height: 100%;
-  max-height: 240px;
+  height: min(45vw, 180px);
 `
 export const Input = styled.input`
   outline: none;
@@ -43,14 +44,41 @@ export const Input = styled.input`
   width: 90vw;
   height: fit-content;
   max-width: 640px;
-  padding: 0.15em;
+  padding: 0.25em;
 
   color: #2b2d42;
 
-  font-size: 1.5rem;
+  font-size: min(5vw, 1.5rem);
   text-align: center;
   border: none;
-  border-radius: 100em;
+  border-radius: 40px;
+
+  transition: all 0.25s ease-in-out;
+
+  :focus {
+    padding: 0.25em;
+    font-size: 1.75rem;
+  }
+`
+export const Button = styled.button`
+  position: absolute;
+  right: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 40px;
+  height: 100%;
+  max-height: 40px;
+  padding: 0.25em;
+
+  font-size: min(5vw, 1.5rem);
+  color: #2b2d42;
+  background-color: red;
+  border: none;
+  border-radius: 40px;
 
   transition: all 0.25s ease-in-out;
 
