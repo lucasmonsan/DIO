@@ -5,6 +5,12 @@ import { RiSearch2Line } from "react-icons/ri"
 export const Home = () => {
   const [username, setUsername] = useState("");
 
+  useEffect (() => {
+    // fetch(`https://api.github.com/users/${username}/repos`)
+    // .then(response => response.json())
+    // .then(data => console.log(data))
+  }, [username]);
+
   return (
     <Section>
       <Header>
