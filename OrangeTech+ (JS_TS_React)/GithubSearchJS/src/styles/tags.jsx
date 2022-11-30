@@ -1,89 +1,85 @@
 import styled from "styled-components";
 
-export const Section = styled.section`
+//COMPONENTES GERAIS
+export const PageBox = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.25em;
 
-  width: 100vw;
   height: 100vh;
 `
-export const Header = styled.header`
-  position: fixed;
-  top: 0;
-
+//SEARCH BAR
+export const SearchContainer = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  gap: 0.25rem;
 
-  width: 100%;
-  height: 55%;
-  padding: 0.5em;
+  width: min(80vw, 640px);
+
+  border-radius: 8px;
+  box-shadow: 0 0 0.5em #00000050;
 `
-export const Footer = styled.footer`
-  position: fixed;
-  bottom: 0;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-
-  width: fit-content;
-  height: 40%;
-  padding: 0.5em;
-
-  border: solid red;
-`
-export const Img = styled.img`
-  height: min(45vw, 180px);
-`
-export const Input = styled.input`
-  outline: none;
-
-  width: 90vw;
-  height: fit-content;
-  max-width: 640px;
-  padding: 0.25em;
-
-  color: #2b2d42;
-
-  font-size: min(5vw, 1.5rem);
-  text-align: center;
-  border: none;
-  border-radius: 40px;
-
-  transition: all 0.25s ease-in-out;
-
-  :focus {
-    padding: 0.25em;
-    font-size: 1.75rem;
-  }
-`
-export const Button = styled.button`
-  position: absolute;
-  right: 5px;
-
+export const SearchIconBox = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 40px;
+  height: 40px;
+  padding: ${props => props.padding};
+
+  font-size: ${props => props.fontSize};
+  border-radius: ${props => props.radius};
+  background-color: ${props => props.bgColor};
+  color: white;
+`
+export const SearchInput = styled.input`
+  outline: none;
+
   width: 100%;
-  max-width: 40px;
-  height: 100%;
-  max-height: 40px;
+  height: 40px;
+  padding: 0 0.25em;
+
+  font-size: 1.25rem;
+  text-align: center;
+  border: none;
+  background-color: white;
+  color: #2b2d42;
+`
+//SEARCH RESULT
+export const ResultContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.25em;
+
+  width: min(80vw, 640px);
   padding: 0.25em;
 
-  font-size: min(5vw, 1.5rem);
-  color: #2b2d42;
-  background-color: red;
-  border: none;
-  border-radius: 40px;
+  border-radius: 8px;
+  background-color: white;
 
   transition: all 0.25s ease-in-out;
+`
+//REPOSITORY
+export const RepositoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 
-  :focus {
-    padding: 0.25em;
-    font-size: 1.75rem;
-  }
+  min-width: 100%;
+  height: 128px;
+
+  border: solid 0.1em red;
+  border-radius: 8px;
+`
+export const RepositoryDiv = styled.div`
+  display: flex;
+
+  width: 100%;
+  height: ${props => props.height};
+
+  background-color: ${props => props.bgColor};
 `
