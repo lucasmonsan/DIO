@@ -1,14 +1,18 @@
+import { useState } from "react"
 import { SearchIconBox, SearchContainer, SearchInput } from "../styles/tags"
 import { RiAtLine, RiGitRepositoryLine, RiSearch2Line } from "react-icons/ri"
 
-export const SearchBar = ({searchMode, setSearchMode, searchInput, setSearchInput, setResultList}) => {
+export const SearchBar = ({ setResultList, setHeaderStage }) => {
+  const [searchMode, setSearchMode] = useState("username");
+  const [searchInput, setSearchInput] = useState("");
+
   function HandleSearchMode () {
     if (searchMode === "username") {
       setSearchMode("repository");
     } else {
       setSearchMode("username");
     }
-  }
+  };
   function SearchGit() {
     if (searchInput === "") {
       if (searchMode === "username") {
@@ -17,24 +21,28 @@ export const SearchBar = ({searchMode, setSearchMode, searchInput, setSearchInpu
         alert("Digite o nome do repositório!")
       }
     } else {
-      if (searchMode === "username") {
-        fetch(`https://api.github.com/users/${searchInput}/repos`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.message === "Not Found") {
-            alert("Nada encontrado")
-          } else {
-            setResultList(data);
-          }
-        })
-      }
+      setHeaderStage(true);
+      
+      setTimeout(() => {
+        if (searchMode === "username") {
+          fetch(`https://api.github.com/users/${searchInput}/repos`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.message === "Not Found") {
+              alert("Nada encontrado")
+            } else {
+              setResultList(data);
+            }
+          })
+        }
+      },"500");
     }
-  }
+  };
 
   return (
     <>
       <SearchContainer>
-        <SearchIconBox radius="8px 0 0 8px" fontSize="1.5rem" bgColor="#944bbb" onClick={HandleSearchMode}>
+        <SearchIconBox radius="8px 0 0 8px" fontSize="1.5rem" bgColor="#9348b8" onClick={HandleSearchMode}>
           {searchMode === "username" && <RiAtLine/> || searchMode === "repository" && <RiGitRepositoryLine/>}
         </SearchIconBox>
         
