@@ -6,3 +6,11 @@
   box-sizing: border-box;
   font-family: 'Rubik', sans-serif;
 }
+
+:root {
+  --color0: #;
+  --color1: #;
+  --color3: #424649;
+  --color4: #8a8e93;
+  --color-logo: #7a8cfa;
+}
