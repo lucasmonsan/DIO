@@ -7,16 +7,16 @@ import { Player } from '@lottiefiles/react-lottie-player';
 export const Home = () => {
   const [resultList, setResultList] = useState([]);
   const [headerStage, setHeaderStage] = useState(false);
-
+  
   useEffect(() => {
     if (headerStage) {
       const aux = document.getElementById("Header");
-
+      
       aux.style.top = "0";
       aux.style.borderRadius = "0 0 1em 1em"
     }
   },[headerStage])
-
+  
   return (
     <PageBox>
       <Header id="Header">
