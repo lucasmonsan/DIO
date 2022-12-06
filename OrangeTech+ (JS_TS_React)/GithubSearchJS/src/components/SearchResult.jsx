@@ -3,16 +3,13 @@ import { ResultContainer } from "../styles/tags";
 import { RepositoryCard } from "./RepositoryCard";
 
 export const SearchResult = ({ resultList }) => {
-  const [oldNumber, setOldNumber] = useState(0);
-  const [colors, setColors] = useState([]);
-
   function ChoiceColor() {
     while (colors.length < resultList.length) {
       const random = (Math.floor(Math.random() * (10) + 1));
-
+      
       if (random !== oldNumber) {
         setOldNumber(random);
-
+        
         if (random === 1) {
           setColors(colors.push("#ff595e"));
         } else if (random === 2) {
@@ -36,10 +33,9 @@ export const SearchResult = ({ resultList }) => {
     }
     console.log(colors);
   }
-
+  
   return (
     <>
-      {ChoiceColor()};
       <ResultContainer>
         
       </ResultContainer>
