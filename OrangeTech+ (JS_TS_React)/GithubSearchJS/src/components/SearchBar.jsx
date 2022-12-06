@@ -6,7 +6,7 @@ import { RiAtLine, RiGitRepositoryLine, RiSearch2Line } from "react-icons/ri"
 export const SearchBar = ({ resultList, setResultList, setHeaderStage }) => {
   const [searchMode, setSearchMode] = useState("username");
   const [searchInput, setSearchInput] = useState("");
-
+  
   function HandleSearchMode () {
     if (searchMode === "username") {
       setSearchMode("repository");
