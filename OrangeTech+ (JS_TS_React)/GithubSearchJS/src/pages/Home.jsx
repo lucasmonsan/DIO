@@ -26,7 +26,7 @@ export const Home = () => {
           <Player autoplay loop src="https://assets4.lottiefiles.com/packages/lf20_5EI9XwtboP.json" style={{ height: "3.5em"}}/>
         </LogoContainer>
         <br />
-        <SearchBar setResultList={setResultList} setHeaderStage={setHeaderStage}/>
+        <SearchBar resultList={resultList} setResultList={setResultList} setHeaderStage={setHeaderStage}/>
       </Header>
       
       
