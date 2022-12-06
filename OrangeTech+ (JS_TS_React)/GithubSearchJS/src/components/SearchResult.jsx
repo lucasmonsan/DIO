@@ -3,9 +3,6 @@ import { ResultContainer } from "../styles/tags";
 import { RepositoryCard } from "./RepositoryCard";
 
 export const SearchResult = ({ resultList }) => {
-  const [oldNumber, setOldNumber] = useState(0);
-  const [colors, setColors] = useState([]);
-  
   function ChoiceColor() {
     while (colors.length < resultList.length) {
       const random = (Math.floor(Math.random() * (10) + 1));
@@ -39,7 +36,6 @@ export const SearchResult = ({ resultList }) => {
   
   return (
     <>
-      {ChoiceColor()};
       <ResultContainer>
         
       </ResultContainer>

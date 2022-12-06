@@ -1,8 +1,9 @@
 import { useState } from "react"
+import axios from "axios";
 import { SearchIconBox, SearchContainer, SearchInput } from "../styles/tags"
 import { RiAtLine, RiGitRepositoryLine, RiSearch2Line } from "react-icons/ri"
 
-export const SearchBar = ({ setResultList, setHeaderStage }) => {
+export const SearchBar = ({ resultList, setResultList, setHeaderStage }) => {
   const [searchMode, setSearchMode] = useState("username");
   const [searchInput, setSearchInput] = useState("");
   
@@ -13,32 +14,18 @@ export const SearchBar = ({ setResultList, setHeaderStage }) => {
       setSearchMode("username");
     }
   };
-  function SearchGit() {
-    if (searchInput === "") {
-      if (searchMode === "username") {
-        alert("Digite algum username!")
-      } else {
-        alert("Digite o nome do repositório!")
-      }
-    } else {
+  const SearchUser = () => {
+    axios.get(`https://api.github.com/users/${searchInput}/repos`)
+    .then(res => {
       setHeaderStage(true);
-      
-      setTimeout(() => {
-        if (searchMode === "username") {
-          fetch(`https://api.github.com/users/${searchInput}/repos`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.message === "Not Found") {
-              alert("Nada encontrado")
-            } else {
-              setResultList(data);
-            }
-          })
-        }
-      },"500");
-    }
-  };
+      setResultList(res.data);
 
+      res.data.map((repo) => {
+        console.log(repo);
+      })
+    })
+  }
+  
   return (
     <>
       <SearchContainer>
@@ -48,7 +35,7 @@ export const SearchBar = ({ setResultList, setHeaderStage }) => {
         
         <SearchInput placeholder={searchMode} value={searchInput} onChange={e => setSearchInput(e.target.value)}/>
         
-        <SearchIconBox radius="0 8px 8px 0" fontSize="1.5rem" bgColor="#05a8aa" onClick={SearchGit}>
+        <SearchIconBox radius="0 8px 8px 0" fontSize="1.5rem" bgColor="#05a8aa" onClick={SearchUser}>
           <RiSearch2Line/>
         </SearchIconBox>
       </SearchContainer>
