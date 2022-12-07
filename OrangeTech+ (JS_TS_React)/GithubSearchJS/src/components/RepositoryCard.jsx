@@ -1,9 +1,9 @@
 import { RepositoryContainer, RepositoryColor, RepositoryTitle, RepositoryDescription } from "../styles/tags"
 
-export const RepositoryCard = ({ result }, props) => {
+export const RepositoryCard = ({ result }) => {
   return (
     <RepositoryContainer>
-      <RepositoryColor bgColor={props.color}/>
+      <RepositoryColor bgColor={result.color}/>
       
       <RepositoryTitle>{result.name}</RepositoryTitle>
       

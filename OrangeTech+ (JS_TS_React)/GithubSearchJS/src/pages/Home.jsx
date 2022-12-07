@@ -7,6 +7,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 export const Home = () => {
   const [resultList, setResultList] = useState([]);
   const [headerStage, setHeaderStage] = useState(false);
+  const [resultStage, setResultStage] = useState(false);
   
   useEffect(() => {
     if (headerStage) {
@@ -30,7 +31,7 @@ export const Home = () => {
       </Header>
       
       
-      {resultList.length > 0 && <SearchResult resultList={resultList}/>}
+      {(resultList.length > 0) ? <SearchResult resultList={resultList}/> : console.log(resultList.length)}
     </PageBox>
   )
 }
