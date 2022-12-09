@@ -31,7 +31,7 @@ export const Home = () => {
       </Header>
       
       
-      {(resultList.length > 0) ? <SearchResult resultList={resultList}/> : console.log(resultList.length)}
+      {(resultList.length === 0) ? console.log(resultList.length) : <SearchResult resultList={resultList}/>}
     </PageBox>
   )
 }

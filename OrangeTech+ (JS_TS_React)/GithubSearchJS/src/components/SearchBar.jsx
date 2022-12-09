@@ -72,7 +72,7 @@ export const SearchBar = ({ resultList, setResultList, setHeaderStage }) => {
       for (let x=0; x<res.data.length; x++) {
         setResultList(resultList.push({id:x, name:auxNames[x], description:auxDescriptions[x], color:auxColors[x]}))
       }
-      console.log(resultList.length)
+      console.log(resultList)
     })
     .catch(error => {
       SearchUser();
